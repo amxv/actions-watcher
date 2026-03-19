@@ -1,0 +1,47 @@
+{
+  "name": "@amxv/gh-actions-watcher",
+  "version": "0.1.0",
+  "description": "Fail-fast watcher for GitHub Actions workflow runs",
+  "license": "MIT",
+  "author": "amxv",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amxv/gh-actions-watcher.git"
+  },
+  "homepage": "https://github.com/amxv/gh-actions-watcher#readme",
+  "bugs": {
+    "url": "https://github.com/amxv/gh-actions-watcher/issues"
+  },
+  "bin": {
+    "gha-watch": "bin/gha-watch.js"
+  },
+  "config": {
+    "cliBinaryName": "gha-watch"
+  },
+  "files": [
+    "bin/gha-watch.js",
+    "scripts/postinstall.js",
+    "cmd",
+    "internal",
+    "go.mod",
+    "README.md",
+    "AGENTS.md",
+    "CONTRIBUTORS.md",
+    "Makefile"
+  ],
+  "scripts": {
+    "postinstall": "node scripts/postinstall.js",
+    "test": "node --check bin/gha-watch.js && node --check scripts/postinstall.js",
+    "lint": "npm run test"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "github-actions",
+    "watcher",
+    "go",
+    "cli",
+    "fail-fast"
+  ]
+}
