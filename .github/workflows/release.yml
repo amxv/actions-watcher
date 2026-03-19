@@ -119,14 +119,6 @@ jobs:
           VERSION="${GITHUB_REF_NAME#v}"
           VERSION="$VERSION" node -e "const fs=require('fs');const p=require('./package.json');p.version=process.env.VERSION;fs.writeFileSync('package.json', JSON.stringify(p, null, 2)+'\\n');"
 
-      - name: npm auth diagnostics
-        run: |
-          echo "registry=$(npm config get registry)"
-          npm whoami || true
-          npm ping || true
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
       - name: Publish to npm
         run: npm publish --access public
         env:
