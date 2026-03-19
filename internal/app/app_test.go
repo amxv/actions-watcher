@@ -55,7 +55,7 @@ func TestRunRootHelp(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Run returned error: %v", err)
 	}
-	if !strings.Contains(out.String(), "gha-watch") {
+	if !strings.Contains(out.String(), "actions-watcher") {
 		t.Fatalf("expected root help output, got: %q", out.String())
 	}
 }

@@ -1,17 +1,17 @@
 # AGENTS.md
 
-Guidance for coding agents working in `gh-actions-watcher`.
+Guidance for coding agents working in `actions-watcher`.
 
 ## Purpose
 
-This repository ships `gha-watch`, a fail-fast GitHub Actions workflow-run watcher implemented in Go and distributed through npm.
+This repository ships `actions-watcher`, a fail-fast GitHub Actions workflow-run watcher implemented in Go and distributed through npm.
 
 ## Architecture
 
-- `cmd/gha-watch/main.go`: process entrypoint, error handling, exits non-zero on failure.
+- `cmd/actions-watcher/main.go`: process entrypoint, error handling, exits non-zero on failure.
 - `internal/app/app.go`: command parser, GitHub API client, watch loop.
 - `internal/app/app_test.go`: unit tests for help/fail-fast/success paths.
-- `bin/gha-watch.js`: npm shim that invokes packaged native binary.
+- `bin/actions-watcher.js`: npm shim that invokes packaged native binary.
 - `scripts/postinstall.js`: downloads release binary on install, falls back to local `go build`.
 - `.github/workflows/release.yml`: tag-driven release pipeline.
 
@@ -37,8 +37,8 @@ Direct commands:
 ## Guardrails
 
 1. Keep binary naming contract aligned across workflow and postinstall:
-- release asset: `gha-watch_<goos>_<goarch>[.exe]`
-- npm installed path: `bin/gha-watch-bin` (or `bin/gha-watch.exe` on Windows)
+- release asset: `actions-watcher_<goos>_<goarch>[.exe]`
+- npm installed path: `bin/actions-watcher-bin` (or `bin/actions-watcher.exe` on Windows)
 
 2. If `CLI_BINARY` changes, update all of:
 - `cmd/<binary>`

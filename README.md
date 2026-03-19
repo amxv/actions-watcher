@@ -1,4 +1,4 @@
-# gh-actions-watcher
+# actions-watcher
 
 Fail-fast GitHub Actions watcher written in Go.
 
@@ -7,17 +7,17 @@ The CLI monitors one or more workflow run IDs and exits immediately when any job
 ## Install
 
 ```bash
-npm i -g @amxv/gh-actions-watcher
-gha-watch --help
+npm i -g actions-watcher
+actions-watcher --help
 ```
 
 ## Usage
 
 ```bash
-gha-watch watch [--repo owner/repo] [--interval seconds] [--token token] RUN_ID [RUN_ID ...]
+actions-watcher watch [--repo owner/repo] [--interval seconds] [--token token] RUN_ID [RUN_ID ...]
 
 # shorthand (without explicit subcommand)
-gha-watch [--repo owner/repo] [--interval seconds] RUN_ID [RUN_ID ...]
+actions-watcher [--repo owner/repo] [--interval seconds] RUN_ID [RUN_ID ...]
 ```
 
 Authentication is resolved in this order:
@@ -36,13 +36,13 @@ Repository slug is resolved in this order:
 
 ```bash
 # Watch a single run
-gha-watch watch 1934567890
+actions-watcher watch 1934567890
 
 # Watch multiple runs in one command
-gha-watch watch --repo amxv/computer-mcp 1934567890 1934567999
+actions-watcher watch --repo amxv/computer-mcp 1934567890 1934567999
 
 # Faster polling for local debugging
-gha-watch --interval 1.0 --repo amxv/computer-mcp 1934567890
+actions-watcher --interval 1.0 --repo amxv/computer-mcp 1934567890
 ```
 
 ## Development
@@ -50,14 +50,14 @@ gha-watch --interval 1.0 --repo amxv/computer-mcp 1934567890
 ```bash
 make check
 make build
-./dist/gha-watch --help
+./dist/actions-watcher --help
 ```
 
 Install locally:
 
 ```bash
 make install-local
-gha-watch --help
+actions-watcher --help
 ```
 
 ## Release

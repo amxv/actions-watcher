@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/amxv/gh-actions-watcher/internal/app"
+	"github.com/amxv/actions-watcher/internal/app"
 )
 
 func main() {

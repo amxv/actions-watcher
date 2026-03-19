@@ -17,7 +17,7 @@ import (
 )
 
 const (
-	commandName          = "gha-watch"
+	commandName          = "actions-watcher"
 	apiBaseURL           = "https://api.github.com"
 	apiVersion           = "2026-03-10"
 	defaultInterval      = 2 * time.Second
@@ -261,7 +261,7 @@ func watchRuns(repo string, runIDs []int, interval time.Duration, stdout, stderr
 			printTransitions(runID, jobs, seenJobs, seenSteps, stdout)
 
 			if failure := firstFailure(runID, jobs); failure != "" {
-				_, _ = fmt.Fprintf(stderr, "[gha-watch] %s\n", failure)
+				_, _ = fmt.Fprintf(stderr, "[actions-watcher] %s\n", failure)
 				return 1, nil
 			}
 
@@ -273,7 +273,7 @@ func watchRuns(repo string, runIDs []int, interval time.Duration, stdout, stderr
 				run := runs[runID]
 				_, _ = fmt.Fprintf(
 					stdout,
-					"[gha-watch] run %d completed with conclusion=%s %s\n",
+					"[actions-watcher] run %d completed with conclusion=%s %s\n",
 					runID,
 					run.Conclusion,
 					strings.TrimSpace(run.HTMLURL),
@@ -291,7 +291,7 @@ func printTransitions(runID int, jobs []jobState, seenJobs, seenSteps map[string
 		jobKey := fmt.Sprintf("%d:%d", runID, job.ID)
 		jobState := fmt.Sprintf("%s|%s", job.Status, job.Conclusion)
 		if seenJobs[jobKey] != jobState {
-			_, _ = fmt.Fprintf(out, "[gha-watch] run %d: %s\n", runID, formatJob(job))
+			_, _ = fmt.Fprintf(out, "[actions-watcher] run %d: %s\n", runID, formatJob(job))
 			seenJobs[jobKey] = jobState
 		}
 
@@ -299,7 +299,7 @@ func printTransitions(runID int, jobs []jobState, seenJobs, seenSteps map[string
 			stepKey := fmt.Sprintf("%d:%d:%d", runID, job.ID, step.Number)
 			stepState := fmt.Sprintf("%s|%s", step.Status, step.Conclusion)
 			if seenSteps[stepKey] != stepState {
-				_, _ = fmt.Fprintf(out, "[gha-watch] run %d: job `%s` %s\n", runID, defaultStr(job.Name, "<unknown job>"), formatStep(step))
+				_, _ = fmt.Fprintf(out, "[actions-watcher] run %d: job `%s` %s\n", runID, defaultStr(job.Name, "<unknown job>"), formatStep(step))
 				seenSteps[stepKey] = stepState
 			}
 		}
@@ -443,11 +443,11 @@ func isHelpArg(v string) bool {
 
 func printRootHelp(w io.Writer) {
 	writeLines(w,
-		"gha-watch - fail-fast watcher for GitHub Actions runs",
+		"actions-watcher - fail-fast watcher for GitHub Actions runs",
 		"",
 		"Usage:",
-		"  gha-watch watch [--repo owner/repo] [--interval seconds] [--token token] RUN_ID [RUN_ID ...]",
-		"  gha-watch [--repo owner/repo] [--interval seconds] RUN_ID [RUN_ID ...]",
+		"  actions-watcher watch [--repo owner/repo] [--interval seconds] [--token token] RUN_ID [RUN_ID ...]",
+		"  actions-watcher [--repo owner/repo] [--interval seconds] RUN_ID [RUN_ID ...]",
 		"",
 		"Commands:",
 		"  watch           watch one or more run IDs and fail on first job/step failure",
@@ -459,9 +459,9 @@ func printRootHelp(w io.Writer) {
 		"  --token         GitHub token (default: GH_TOKEN, GITHUB_TOKEN, or gh auth token)",
 		"",
 		"Examples:",
-		"  gha-watch watch 123456789",
-		"  gha-watch watch --repo amxv/gh-actions-watcher 123456789 123456790",
-		"  gha-watch --interval 1.5 123456789",
+		"  actions-watcher watch 123456789",
+		"  actions-watcher watch --repo amxv/actions-watcher 123456789 123456790",
+		"  actions-watcher --interval 1.5 123456789",
 	)
 }
 

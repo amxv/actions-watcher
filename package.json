@@ -1,25 +1,25 @@
 {
-  "name": "@amxv/gh-actions-watcher",
+  "name": "actions-watcher",
   "version": "0.1.0",
   "description": "Fail-fast watcher for GitHub Actions workflow runs",
   "license": "MIT",
   "author": "amxv",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/amxv/gh-actions-watcher.git"
+    "url": "git+https://github.com/amxv/actions-watcher.git"
   },
-  "homepage": "https://github.com/amxv/gh-actions-watcher#readme",
+  "homepage": "https://github.com/amxv/actions-watcher#readme",
   "bugs": {
-    "url": "https://github.com/amxv/gh-actions-watcher/issues"
+    "url": "https://github.com/amxv/actions-watcher/issues"
   },
   "bin": {
-    "gha-watch": "bin/gha-watch.js"
+    "actions-watcher": "bin/actions-watcher.js"
   },
   "config": {
-    "cliBinaryName": "gha-watch"
+    "cliBinaryName": "actions-watcher"
   },
   "files": [
-    "bin/gha-watch.js",
+    "bin/actions-watcher.js",
     "scripts/postinstall.js",
     "cmd",
     "internal",
@@ -31,7 +31,7 @@
   ],
   "scripts": {
     "postinstall": "node scripts/postinstall.js",
-    "test": "node --check bin/gha-watch.js && node --check scripts/postinstall.js",
+    "test": "node --check bin/actions-watcher.js && node --check scripts/postinstall.js",
     "lint": "npm run test"
   },
   "engines": {

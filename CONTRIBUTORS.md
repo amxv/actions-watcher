@@ -1,12 +1,12 @@
 # CONTRIBUTORS.md
 
-Maintainer notes for `gh-actions-watcher`.
+Maintainer notes for `actions-watcher`.
 
 ## Prerequisites
 
 - Go `1.26+`
 - Node `18+`
-- npm account with publish rights for `@amxv/gh-actions-watcher`
+- npm account with publish rights for `actions-watcher`
 - GitHub repo admin access
 
 ## Local development
@@ -14,14 +14,14 @@ Maintainer notes for `gh-actions-watcher`.
 ```bash
 make check
 make build
-./dist/gha-watch --help
+./dist/actions-watcher --help
 ```
 
 Install locally:
 
 ```bash
 make install-local
-gha-watch --help
+actions-watcher --help
 ```
 
 ## Release process
@@ -47,12 +47,12 @@ make release-tag VERSION=0.1.0
 
 ## Required GitHub secret
 
-- `NPM_TOKEN`: npm automation token with publish rights for `@amxv/gh-actions-watcher`.
+- `NPM_TOKEN`: npm automation token with publish rights for `actions-watcher`.
 
 Set via GitHub CLI:
 
 ```bash
-gh secret set NPM_TOKEN --repo amxv/gh-actions-watcher
+gh secret set NPM_TOKEN --repo amxv/actions-watcher
 ```
 
 ## npm token setup

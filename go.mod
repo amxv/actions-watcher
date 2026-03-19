@@ -1,3 +1,3 @@
-module github.com/amxv/gh-actions-watcher
+module github.com/amxv/actions-watcher
 
 go 1.26

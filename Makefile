@@ -2,7 +2,7 @@ SHELL := /bin/bash
 
 GO ?= go
 GOFMT ?= gofmt
-BIN_NAME ?= gha-watch
+BIN_NAME ?= actions-watcher
 CMD_PATH ?= ./cmd/$(BIN_NAME)
 DIST_DIR ?= dist
 BIN_PATH ?= $(DIST_DIR)/$(BIN_NAME)
@@ -11,7 +11,7 @@ LDFLAGS ?= -s -w
 .PHONY: help fmt test vet lint check build build-all install-local clean release-tag
 
 help:
-	@echo "gh-actions-watcher command runner"
+	@echo "actions-watcher command runner"
 	@echo ""
 	@echo "Targets:"
 	@echo "  make fmt          - format Go files"
@@ -19,9 +19,9 @@ help:
 	@echo "  make vet          - run go vet ./..."
 	@echo "  make lint         - run Node script checks"
 	@echo "  make check        - fmt + test + vet + lint"
-	@echo "  make build        - build local binary to dist/gha-watch"
+	@echo "  make build        - build local binary to dist/actions-watcher"
 	@echo "  make build-all    - build release binaries for 5 target platforms"
-	@echo "  make install-local- install CLI to ~/.local/bin/gha-watch"
+	@echo "  make install-local- install CLI to ~/.local/bin/actions-watcher"
 	@echo "  make clean        - remove dist artifacts"
 	@echo "  make release-tag  - create and push git tag (requires VERSION=x.y.z)"
 
