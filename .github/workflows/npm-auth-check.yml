@@ -1,0 +1,49 @@
+name: npm-auth-check
+
+on:
+  workflow_dispatch:
+    inputs:
+      package_name:
+        description: "npm package name to inspect"
+        required: true
+        default: "actions-watcher"
+
+env:
+  NODE_VERSION: "22"
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+permissions:
+  contents: read
+
+jobs:
+  auth-check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          registry-url: "https://registry.npmjs.org"
+
+      - name: Verify token presence
+        run: |
+          test -n "${NODE_AUTH_TOKEN:-}" || {
+            echo "NPM_TOKEN is missing" >&2
+            exit 1
+          }
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: npm auth diagnostics
+        run: |
+          echo "registry=$(npm config get registry)"
+          npm whoami
+          npm ping
+          npm view "${PACKAGE_NAME}" version --json
+          npm owner ls "${PACKAGE_NAME}"
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          PACKAGE_NAME: ${{ inputs.package_name }}
