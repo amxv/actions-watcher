@@ -24,6 +24,7 @@
     "cmd",
     "internal",
     "go.mod",
+    "LICENSE",
     "README.md",
     "AGENTS.md",
     "CONTRIBUTORS.md",
